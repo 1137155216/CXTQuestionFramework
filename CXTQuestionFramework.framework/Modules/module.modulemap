@@ -1,0 +1,6 @@
+framework module CXTQuestionFramework {
+  umbrella header "CXTQuestionFramework-umbrella.h"
+
+  export *
+  module * { export * }
+}
