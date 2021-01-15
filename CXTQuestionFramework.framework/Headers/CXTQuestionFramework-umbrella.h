@@ -10,9 +10,6 @@
 #endif
 #endif
 
-#import "CXTQBasisViewControllerClass.h"
-#import "CXTQHeader.h"
-#import "CXTQNavigationBarView.h"
 #import "CXTQuestionHomeVc.h"
 
 FOUNDATION_EXPORT double CXTQuestionFrameworkVersionNumber;
