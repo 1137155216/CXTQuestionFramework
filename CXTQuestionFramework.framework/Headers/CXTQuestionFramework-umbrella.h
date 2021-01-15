@@ -10,7 +10,7 @@
 #endif
 #endif
 
-#import "CXTQuestionHomeVc.h"
+#import "CXTQestionSDK.h"
 
 FOUNDATION_EXPORT double CXTQuestionFrameworkVersionNumber;
 FOUNDATION_EXPORT const unsigned char CXTQuestionFrameworkVersionString[];

@@ -1,15 +1,12 @@
 //
-//  CXTQuestionHomeVc.h
-//  CXTQuestionFramework_Example
+//  CXTQestionSDK.h
+//  CXTQuestionFramework
 //
-//  Created by 丁 on 2020/6/28.
-//  Copyright © 2020 1137155216. All rights reserved.
+//  Created by 丁 on 2021/1/15.
 //
 
+#import <Foundation/Foundation.h>
 
-
-
-#import <UIKit/UIKit.h>
 //点击考试按钮 参数@{@"subjectId":@""};
 #define CXTQNOTTESTEVENT @"CXTQNOTTESTEVENT"
 //考试结果回调 模拟考试结束的通知。 返回的字典模型key：startTimestamp, endTimestamp, score, isPass（BOOL类型转的NSNumber）, kemu(对应subject_id) 数据类型都是 (NSNumber)
@@ -52,7 +49,7 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
     
 };
 
-@interface CXTQuestionHomeVc : UIViewController
+@interface CXTQestionSDK : NSObject
 @property (nonatomic, assign) BOOL testStateSubjectOne;//第一个科目是否可以考试
 @property (nonatomic, assign) BOOL testStateSubjectTwo;//第一个科目是否可以考试
 
@@ -64,6 +61,11 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
  */
 + (void)initQuestionWithAppId:(NSString *)appId;
 
+
+/// 获取题库主页 vc
++ (UIViewController *)getQuestionHomeVc;
+
+
 /*!
  * @abstract 考试题库设置方法
  *
@@ -73,7 +75,7 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
  * @param cityID             登录用户城市的code，没有时需要传0;
  * @param userToken 学员课程登记接口返回参数;
  */
-- (void)resetCertificateType:(CXTQCertificateType)certificateType licenceId:(CXTQTestType)licenceId provinceID:(NSInteger)provinceID cityID:(NSInteger)cityID userToken:(NSString *)userToken;
++ (void)resetCertificateType:(CXTQCertificateType)certificateType licenceId:(CXTQTestType)licenceId provinceID:(NSInteger)provinceID cityID:(NSInteger)cityID userToken:(NSString *)userToken;
 
 //跳转考试页面,初始化以后使用,!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!严重警告!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 + (void)pushTestVc;
@@ -95,9 +97,6 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
 
 // 当前设置的驾照类型科目四考试结果分数的list
 + (NSArray <NSString *> *)fetchKemu4ExamScoreList;
-
-
 @end
-
 
 NS_ASSUME_NONNULL_END
