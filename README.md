@@ -112,3 +112,8 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
     
 };
 ```
+
+* 2021-03-02 <br>
+最新Version：【Version：1.0.7】<br>
+更新内容：<br>
+1.0.7、首页新增根据栈设置返回按钮，新增模块无限添加
