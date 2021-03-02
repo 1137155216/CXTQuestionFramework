@@ -113,7 +113,7 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
 };
 ```
 
-## 5、更新记录：【倒叙】
+## 更新记录：【倒叙】
 
 * 2021-03-02 <br>
 最新Version：【Version：1.0.7】<br>
