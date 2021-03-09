@@ -115,6 +115,10 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
 
 ## 更新记录：【倒叙】
 
+* 2021-03-09
+最新Version：【Version：1.0.8】
+更新内容：
+1.0.8、 考试结果返回逻辑更改,返回至首页修改为返回为指定页
 * 2021-03-02 <br>
 最新Version：【Version：1.0.7】<br>
 更新内容：<br>
