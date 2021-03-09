@@ -3,7 +3,17 @@
 //  CXTQuestionFramework
 //
 //  Created by 丁 on 2021/1/15.
-//
+//  Version：1.0.8
+/*
+ 2021-03-09
+ 最新Version：【Version：1.0.8】
+ 更新内容：
+ 1.0.8、 考试结果返回逻辑更改,返回至首页修改为返回为指定页
+ 2021-03-02
+ 最新Version：【Version：1.0.7】
+ 更新内容：
+ 1.0.7、首页新增根据栈设置返回按钮，新增模块无限添加
+ */
 
 #import <Foundation/Foundation.h>
 
