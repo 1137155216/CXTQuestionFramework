@@ -45,6 +45,11 @@ UIViewController * questionPage = [CXTQestionSDK getQuestionHomeVc];
 ```
 其他 API
 ```
+@property (nonatomic, copy) NSString * titleName;// 设置自定义主标题名称,不设置默认使用CXTQTestType注释名称,暂不支持实时刷新控件
+
+///获取 CXTSDK 单例
++ (CXTQestionSDK *)sharedCXTSDKMamager;
+
 //跳转考试页面,仅用于接受CXTQNOTTESTEVENT通知后调用,!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!严重警告!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 + (void)pushTestVc;
 
