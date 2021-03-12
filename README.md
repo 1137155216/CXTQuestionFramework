@@ -120,6 +120,10 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
 
 ## 更新记录：【倒叙】
 
+* 2021-03-12
+最新Version：【Version：1.1.0】
+更新内容：
+1.1.0、 新增自定义标题
 * 2021-03-09
 最新Version：【Version：1.0.8】
 更新内容：
