@@ -52,16 +52,21 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
     CXTQTestTypeCertificatePassengerAndFreight  = 20,            // 资格证-道路客货运输
     CXTQTestTypeCertificateTaxi                 = 24,            // 资格证-出租车
     CXTQTestTypeCertificateDangerousCargo       = 25,            // 资格证-危险货物
+    
     CXTQTestTypeSafetyEducationDangerousCargo   = 22,            // 安全教育-危险货物
     CXTQTestTypeSafetyEducationTaxi             = 33,            // 安全教育-出租车
     CXTQTestTypeSafetyEducationPassenger        = 34,            // 安全教育-道路客运
-    CXTQTestTypeSafetyEducationFreight          = 35,            // 资格证-道路货物运
+    CXTQTestTypeSafetyEducationDutyAndSafety    = 37,            // 安全教育-责任人及安全员
+    CXTQTestTypeSafetyEducationFreight          = 35,            // 安全教育-道路货物运
+    CXTQTestTypeSafetyEducationTransit          = 3222222224,    // 安全教育-公交
     
 };
 
 @interface CXTQestionSDK : NSObject
-@property (nonatomic, assign) BOOL testStateSubjectOne;//第一个科目是否可以考试
-@property (nonatomic, assign) BOOL testStateSubjectTwo;//第一个科目是否可以考试
+@property (nonatomic, copy) NSString * titleName;// 设置自定义主标题名称,不设置默认使用CXTQTestType注释名称,暂不支持实时刷新控件
+
+///获取 CXTSDK 单例
++ (CXTQestionSDK *)sharedCXTSDKMamager;
 
 
 /*!
@@ -74,7 +79,6 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
 
 /// 获取题库主页 vc
 + (UIViewController *)getQuestionHomeVc;
-
 
 /*!
  * @abstract 考试题库设置方法
@@ -90,22 +94,22 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
 //跳转考试页面,仅用于接受CXTQNOTTESTEVENT通知后调用,!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!严重警告!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 + (void)pushTestVc;
 
-// 当前设置的驾照类型科目一题目的总数（单一科目也用这个方法取就可以，比如 资格证考试）
+// 获取当前设置的驾照类型科目一题目的总数（单一科目也用这个方法取就可以，比如 资格证考试）
 + (NSInteger)fetchKemu1QuestionCount;
 
-// 当前设置的驾照类型科目一已做题目的总数（单一科目也用这个方法取就可以，比如 资格证考试）
+// 获取当前设置的驾照类型科目一已做题目的总数（单一科目也用这个方法取就可以，比如 资格证考试）
 + (NSInteger)fetchKemu1DoneQuestionCount;
 
-// 当前设置的驾照类型科目一考试结果分数的list
+// 获取当前设置的驾照类型科目一考试结果分数的list
 + (NSArray <NSString *> *)fetchKemu1ExamScoreList;
 
-// 当前设置的驾照类型科目四题目的总数
+// 获取当前设置的驾照类型科目四题目的总数
 + (NSInteger)fetchKemu4QuestionCount;
 
-// 当前设置的驾照类型科目四已做题目的总数
+// 获取当前设置的驾照类型科目四已做题目的总数
 + (NSInteger)fetchKemu4DoneQuestionCount;
 
-// 当前设置的驾照类型科目四考试结果分数的list
+// 获取当前设置的驾照类型科目四考试结果分数的list
 + (NSArray <NSString *> *)fetchKemu4ExamScoreList;
 @end
 
