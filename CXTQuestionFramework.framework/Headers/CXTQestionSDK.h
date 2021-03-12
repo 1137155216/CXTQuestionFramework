@@ -52,13 +52,12 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
     CXTQTestTypeCertificatePassengerAndFreight  = 20,            // 资格证-道路客货运输
     CXTQTestTypeCertificateTaxi                 = 24,            // 资格证-出租车
     CXTQTestTypeCertificateDangerousCargo       = 25,            // 资格证-危险货物
-    
     CXTQTestTypeSafetyEducationDangerousCargo   = 22,            // 安全教育-危险货物
     CXTQTestTypeSafetyEducationTaxi             = 33,            // 安全教育-出租车
     CXTQTestTypeSafetyEducationPassenger        = 34,            // 安全教育-道路客运
     CXTQTestTypeSafetyEducationDutyAndSafety    = 37,            // 安全教育-责任人及安全员
     CXTQTestTypeSafetyEducationFreight          = 35,            // 安全教育-道路货物运
-    CXTQTestTypeSafetyEducationTransit          = 3222222224,    // 安全教育-公交
+//    CXTQTestTypeSafetyEducationTransit          = xxxxxxx      // 安全教育-公交--未开放
     
 };
 
