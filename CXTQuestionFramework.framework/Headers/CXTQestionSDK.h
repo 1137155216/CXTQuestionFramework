@@ -5,6 +5,14 @@
 //  Created by 丁 on 2021/1/15.
 //  Version：1.0.8
 /*
+ 2021-03-13
+ 最新Version：【Version：1.1.1】
+ 更新内容：
+ 1.1.1、 屏蔽 log
+ 2021-03-12
+ 最新Version：【Version：1.1.0】
+ 更新内容：
+ 1.1.0、 新增自定义标题
  2021-03-09
  最新Version：【Version：1.0.8】
  更新内容：
@@ -29,6 +37,7 @@ typedef NS_ENUM(NSUInteger, CXTQCertificateType) {
     CXTQCertificateTypeVerifyStudy              = 12,            // 审验&满12分
     CXTQCertificateTypeCertificate              = 15,            // 资格证
     CXTQCertificateTypeSafetyEducation          = 23,            // 安全教育
+    CXTQCertificateTypeSecurityOperation        = 27,            // 交通安全专项行动
 };
 //考试类型
 typedef NS_ENUM(NSUInteger, CXTQTestType) {
@@ -55,10 +64,13 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
     CXTQTestTypeSafetyEducationDangerousCargo   = 22,            // 安全教育-危险货物
     CXTQTestTypeSafetyEducationTaxi             = 33,            // 安全教育-出租车
     CXTQTestTypeSafetyEducationPassenger        = 34,            // 安全教育-道路客运
-    CXTQTestTypeSafetyEducationDutyAndSafety    = 37,            // 安全教育-责任人及安全员
+    CXTQTestTypeSafetyEducationDutyAndSafety    = 41,            // 安全教育-责任人及安全员
     CXTQTestTypeSafetyEducationFreight          = 35,            // 安全教育-道路货物运
-//    CXTQTestTypeSafetyEducationTransit          = xxxxxxx      // 安全教育-公交--未开放
-    
+    CXTQTestTypeSafetyEducationTransit          = 43,            // 安全教育-公交
+    CXTQTestTypeSafetyOperationPassenger        = 28,            // 交通安全专项行动-旅客运输
+    CXTQTestTypeSafetyOperationFreight          = 29,            // 交通安全专项行动-货物运输
+    CXTQTestTypeSafetyOperationDangerousCargo   = 30,            // 交通安全专项行动-危险货物
+    CXTQTestTypeSafetyOperationTransit          = 31,            // 交通安全专项行动-公交车
 };
 
 @interface CXTQestionSDK : NSObject
