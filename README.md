@@ -3,7 +3,7 @@
 ## 这是车学堂专用题库
 ### CocoaPods导入：
 ```
-pod 'CXTQuestionFramework', '~> 1.0.7'
+pod 'CXTQuestionFramework', '~> 1.1.2'
 
 pod update --verbose --repo-update
 ```
