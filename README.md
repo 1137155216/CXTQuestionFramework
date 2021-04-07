@@ -9,7 +9,7 @@ pod update --verbose --repo-update
 ```
 ### 初始化：
 + (void)initQuestionWithAppId:(NSString *)appId;
-<br>
+
 示例：
 引入
 ```
