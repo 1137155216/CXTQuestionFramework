@@ -1,10 +1,14 @@
 //
-//  CXTQestionSDK.h
+//  CXTQuestionSDK.h
 //  CXTQuestionFramework
 //
 //  Created by 丁 on 2021/1/15.
 //  Version：1.0.8
 /*
+ 2021-04-07
+ 最新Version：【Version：1.1.3】
+ 更新内容：
+ 1.1.2、 优化方法命名规范,新增部分 UI自定义
  2021-03-16
  最新Version：【Version：1.1.2】
  更新内容：
@@ -77,23 +81,15 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
     CXTQTestTypeSafetyOperationTransit          = 31,            // 交通安全专项行动-公交车
 };
 
-@interface CXTQestionSDK : NSObject
+@interface CXTQuestionSDK : NSObject
 @property (nonatomic, copy) NSString * titleName;// 设置自定义主标题名称,不设置默认使用CXTQTestType注释名称,暂不支持实时刷新控件
-
-///获取 CXTSDK 单例
-+ (CXTQestionSDK *)sharedCXTSDKMamager;
-
 
 /*!
  * @abstract 题库初始化方法
  *
  * @param appId 商家编号;
  */
-+ (void)initQuestionWithAppId:(NSString *)appId;
-
-
-/// 获取题库主页 vc
-+ (UIViewController *)getQuestionHomeVc;
++ (void)cxtq_initQuestionWithAppId:(NSString * __nullable)appId;
 
 /*!
  * @abstract 考试题库设置方法
@@ -104,28 +100,41 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
  * @param cityID             登录用户城市的code，没有时需要传0;
  * @param userToken 学员课程登记接口返回参数;
  */
-+ (void)resetCertificateType:(CXTQCertificateType)certificateType licenceId:(CXTQTestType)licenceId provinceID:(NSInteger)provinceID cityID:(NSInteger)cityID userToken:(NSString *)userToken;
++ (void)cxtq_resetCertificateType:(CXTQCertificateType)certificateType licenceId:(CXTQTestType)licenceId provinceID:(NSInteger)provinceID cityID:(NSInteger)cityID userToken:(NSString * __nullable)userToken;
+
+/// 设置及格分数
+/// @param passMark 及格分数 0-100
++ (void)cxtq_setUserTestPassMark:(NSInteger)passMark;
+
+/// 设置考试时间
+/// @param time 考试时间秒级别
++ (void)cxtq_setUserTestTime:(NSInteger)time;
+
+
+/// 获取题库主页 vc
++ (UIViewController *)cxtq_getQuestionHomeVc;
+
 
 //跳转考试页面,仅用于接受CXTQNOTTESTEVENT通知后调用,!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!严重警告!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-+ (void)pushTestVc;
++ (void)cxtq_pushTestVc;
 
 // 获取当前设置的驾照类型科目一题目的总数（单一科目也用这个方法取就可以，比如 资格证考试）
-+ (NSInteger)fetchKemu1QuestionCount;
++ (NSInteger)cxtq_fetchKemu1QuestionCount;
 
 // 获取当前设置的驾照类型科目一已做题目的总数（单一科目也用这个方法取就可以，比如 资格证考试）
-+ (NSInteger)fetchKemu1DoneQuestionCount;
++ (NSInteger)cxtq_fetchKemu1DoneQuestionCount;
 
 // 获取当前设置的驾照类型科目一考试结果分数的list
-+ (NSArray <NSString *> *)fetchKemu1ExamScoreList;
++ (NSArray <NSString *> *)cxtq_fetchKemu1ExamScoreList;
 
 // 获取当前设置的驾照类型科目四题目的总数
-+ (NSInteger)fetchKemu4QuestionCount;
++ (NSInteger)cxtq_fetchKemu4QuestionCount;
 
 // 获取当前设置的驾照类型科目四已做题目的总数
-+ (NSInteger)fetchKemu4DoneQuestionCount;
++ (NSInteger)cxtq_fetchKemu4DoneQuestionCount;
 
 // 获取当前设置的驾照类型科目四考试结果分数的list
-+ (NSArray <NSString *> *)fetchKemu4ExamScoreList;
++ (NSArray <NSString *> *)cxtq_fetchKemu4ExamScoreList;
 @end
 
 NS_ASSUME_NONNULL_END
