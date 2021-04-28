@@ -5,10 +5,14 @@
 //  Created by 丁 on 2021/1/15.
 //  Version：1.0.8
 /*
+ 2021-04-28
+ 最新Version：【Version：1.1.4】
+ 更新内容：
+ 1.1.4、 开放错题权限
  2021-04-07
  最新Version：【Version：1.1.3】
  更新内容：
- 1.1.2、 优化方法命名规范,新增部分 UI自定义
+ 1.1.3、 优化方法命名规范,新增部分 UI自定义
  2021-03-16
  最新Version：【Version：1.1.2】
  更新内容：
@@ -90,6 +94,9 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
  * @param appId 商家编号;
  */
 + (void)cxtq_initQuestionWithAppId:(NSString * __nullable)appId;
+
+/// @param platformType 使用平台 101:车学堂,102 道路学堂, 103;
++ (void)cxtq_initQuestionWithPlatformType:(NSInteger)platformType;
 
 /*!
  * @abstract 考试题库设置方法
