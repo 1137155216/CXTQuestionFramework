@@ -95,8 +95,7 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
  */
 + (void)cxtq_initQuestionWithAppId:(NSString * __nullable)appId;
 
-/// @param platformType 使用平台 101:车学堂,102 道路学堂, 103;
-+ (void)cxtq_initQuestionWithPlatformType:(NSInteger)platformType;
+
 
 /*!
  * @abstract 考试题库设置方法
