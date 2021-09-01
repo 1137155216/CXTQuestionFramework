@@ -3,7 +3,7 @@
 ## 这是车学堂专用题库
 ### CocoaPods导入：
 ```
-pod 'CXTQuestionFramework', '~> 1.1.6'
+pod 'CXTQuestionFramework', '~> 1.1.8'
 
 pod update --verbose --repo-update
 ```
@@ -193,6 +193,10 @@ UI相关 API
 
 ## 更新记录：【倒叙】
 
+* 2021-09-01<br>
+最新Version：【Version：1.1.8】<br>
+更新内容：<br>
+1.1.8、 修复 bug<br>
 * 2021-07-19<br>
 最新Version：【Version：1.1.6】<br>
 更新内容：<br>
