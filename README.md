@@ -194,9 +194,9 @@ UI相关 API
 ## 更新记录：【倒叙】
 
 * 2021-09-01<br>
-最新Version：【Version：1.1.8】<br>
+最新Version：【Version：1.1.9】<br>
 更新内容：<br>
-1.1.8、 修复 成绩单 bug<br>
+1.1.9、 修复 成绩单 bug<br>
 * 2021-09-01<br>
 最新Version：【Version：1.1.8】<br>
 更新内容：<br>
