@@ -96,7 +96,6 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
 + (void)cxtq_initQuestionWithAppId:(NSString * __nullable)appId;
 
 
-
 /*!
  * @abstract 考试题库设置方法
  *
