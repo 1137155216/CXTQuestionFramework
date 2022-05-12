@@ -22,6 +22,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CXTQuestionSDKUI : NSObject
 
+
+/// 设置首页 导航标题
+/// 设置自定义主标题名称,不设置默认使用CXTQTestType注释名称,暂不支持实时刷新控件
+/// @param title 标题
++ (void)cxtq_setHomeNavTitle:(NSString * __nullable)title;
+
+
 /// 一键设置首页考试按钮
 /// @param title 标题
 /// @param subtitle 副标题

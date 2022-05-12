@@ -5,6 +5,10 @@
 //  Created by 丁 on 2021/1/15.
 //  Version：1.0.8
 /*
+ 2022-05-12
+ 最新Version：【Version：1.2.0】
+ 更新内容：
+ 1.2.0、 新增指定章节
  2021-04-28
  最新Version：【Version：1.1.4】
  更新内容：
@@ -37,10 +41,22 @@
 
 #import <Foundation/Foundation.h>
 
+//点击顺序练习按钮 参数@{@"subjectId":@""};
+#define CXTQNOTORDER @"CXTQNOTORDER"
 //点击考试按钮 参数@{@"subjectId":@""};
 #define CXTQNOTTESTEVENT @"CXTQNOTTESTEVENT"
+//点击首页业务模块通知，方便于统计用户使用情况 参数@{@"itme_type":@""};
+//未做习题101，题型练习102，专项练习103，知识点练习104，错题及收藏105，成绩单106，vip理论速成107、新规押题108、练习 50 题 109、智能答题110、速成500题111、答题技巧112、做题免广告113、付费页面114、付费成功115
+#define CXTQHOMEITEMEVENT @"CXTQHOMEITEMEVENT"
+//点击首页业务模块子模块通知，方便于统计用户使用情况 参数@{@"itme_type":@""};
+#define CXTQHOMESUBITEMEVENT @"CXTQHOMESUBITEMEVENT"
 //考试结果回调 模拟考试结束的通知。 返回的字典模型key：startTimestamp, endTimestamp, score, isPass（BOOL类型转的NSNumber）, kemu(对应subject_id) 数据类型都是 (NSNumber)
 #define CXTQTEXTRESULTS @"CXTQTEXTRESULTS"
+///做题计学时，需要扫脸验证发送通知
+///通知包含字典信息：key: practiceDurationTime,数据类型是 NSNumber，单位是秒；key: practiceStatus,value是个字符串枚举，start,verify,quit;
+#define CXTQRECORDHOURSVALIDATION @"CXTQRECORDHOURSVALIDATION"
+
+#define CXTQLOGINXCT @"CXTQLOGINXCT"
 NS_ASSUME_NONNULL_BEGIN
 //证件类型
 typedef NS_ENUM(NSUInteger, CXTQCertificateType) {
@@ -58,6 +74,8 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
     CXTQTestTypeDriverLicensePassenger          = 4,             // 初学客车(A1/A3/B1)
     CXTQTestTypeDriverLicenseMotorcycle         = 5,             // 初学摩托车(D/E/F)
     CXTQTestTypeDriverLicenseSmallCarClassroom  = 26,            // 初学小车-课堂教学
+    CXTQTestTypeDriverLicenseFreightEmployed    = 127,           // 初学货运从业
+    CXTQTestTypeDriverLicenseTractor            = 214,           // 初学轻型牵引挂车
     CXTQTestTypeContinueStudyCoach              = 7,             // 继续教育-教练员
     CXTQTestTypeContinueStudyPassenger          = 8,             // 继续教育-客运
     CXTQTestTypeContinueStudyFreight            = 9,             // 继续教育-货运
@@ -86,7 +104,6 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
 };
 
 @interface CXTQuestionSDK : NSObject
-@property (nonatomic, copy) NSString * titleName;// 设置自定义主标题名称,不设置默认使用CXTQTestType注释名称,暂不支持实时刷新控件
 
 /*!
  * @abstract 题库初始化方法
@@ -95,6 +112,14 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
  */
 + (void)cxtq_initQuestionWithAppId:(NSString * __nullable)appId;
 
+/*!
+ * @abstract 设置按照章节，子章节，课程 id取题顺序练习和考试，没有传0
+ *
+ * @param chapter_id 章节 id;
+ * @param sub_chapter_id 子章节 id;
+ * @param course_id 课程章节 id;
+ */
++ (void)cxtq_setTakeQuestionChapter_id:(NSInteger)chapter_id sub_chapter_id:(NSInteger)sub_chapter_id course_id:(NSInteger)course_id;
 
 /*!
  * @abstract 考试题库设置方法
@@ -109,11 +134,16 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
 
 /// 设置及格分数
 /// @param passMark 及格分数 0-100
-+ (void)cxtq_setUserTestPassMark:(NSInteger)passMark;
-
-/// 设置考试时间
-/// @param time 考试时间秒级别
-+ (void)cxtq_setUserTestTime:(NSInteger)time;
+/// @param time 考试时间
+/// @param radioMark 单选题得分
+/// @param radioCount 单选题数量
+/// @param checkboxMark 多选题得分
+/// @param checkboxCount 多选题数量
+/// @param judgeMark 判断题得分
+/// @param judgeCount 判断题数量
++ (void)cxtq_setUserTestRulesPassMark:(NSInteger)passMark time:(NSInteger)time radioMark:(NSInteger)radioMark radioCount:(NSInteger)radioCount checkboxMark:(NSInteger)checkboxMark checkboxCount:(NSInteger)checkboxCount judgeMark:(NSInteger)judgeMark judgeCount:(NSInteger)judgeCount;
+///设置 考试按照试题 id固定取题，id逗号分隔
++ (void)cxtq_setUserTestQuestionsIds:(NSString *)questionsIds;
 
 
 /// 获取题库主页 vc
