@@ -3,7 +3,7 @@
 ## 这是车学堂专用题库
 ### CocoaPods导入：
 ```
-pod 'CXTQuestionFramework', '~> 1.1.9'
+pod 'CXTQuestionFramework', '~> 1.2.0'
 
 pod update --verbose --repo-update
 ```
@@ -40,6 +40,19 @@ UIViewController * questionPage = [CXTQestionSDK getQuestionHomeVc];
  */
 + (void)resetCertificateType:(CXTQCertificateType)certificateType licenceId:(CXTQTestType)licenceId provinceID:(NSInteger)provinceID cityID:(NSInteger)cityID userToken:(NSString *)userToken;
 ```
+
+设置取题规则
+```
+/*!
+ * @abstract 设置按照章节，子章节，课程 id取题顺序练习和考试，没有传0
+ *
+ * @param chapter_id 章节 id;
+ * @param sub_chapter_id 子章节 id;
+ * @param course_id 课程章节 id;
+ */
++ (void)cxtq_setTakeQuestionChapter_id:(NSInteger)chapter_id sub_chapter_id:(NSInteger)sub_chapter_id course_id:(NSInteger)course_id;
+```
+
 示例
 ```
 [CXTQestionSDK resetCertificateType:1 licenceId:2 provinceID:0 cityID:0 userToken:@"xxxxxxxx"];
@@ -193,6 +206,10 @@ UI相关 API
 
 ## 更新记录：【倒叙】
 
+* 2022-05-12<br>
+最新Version：【Version：1.2.0】<br>
+更新内容：<br>
+1.2.0、 新增指定章节<br> 
 * 2021-09-01<br>
 最新Version：【Version：1.1.9】<br>
 更新内容：<br>
