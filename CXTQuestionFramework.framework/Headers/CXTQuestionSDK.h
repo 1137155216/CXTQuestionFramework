@@ -5,10 +5,6 @@
 //  Created by 丁 on 2021/1/15.
 //  Version：1.0.8
 /*
- 2022-05-12
- 最新Version：【Version：1.2.0】
- 更新内容：
- 1.2.01.2.0、 新增指定章节
  2021-04-28
  最新Version：【Version：1.1.4】
  更新内容：
@@ -132,23 +128,15 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
  */
 + (void)cxtq_resetCertificateType:(CXTQCertificateType)certificateType licenceId:(CXTQTestType)licenceId provinceID:(NSInteger)provinceID cityID:(NSInteger)cityID userToken:(NSString * __nullable)userToken;
 
+
+
 /// 设置及格分数
 /// @param passMark 及格分数 0-100
 /// @param time 考试时间
-/// @param radioMark 单选题得分
-/// @param radioCount 单选题数量
-/// @param checkboxMark 多选题得分
-/// @param checkboxCount 多选题数量
-/// @param judgeMark 判断题得分
-/// @param judgeCount 判断题数量
-+ (void)cxtq_setUserTestRulesPassMark:(NSInteger)passMark time:(NSInteger)time radioMark:(NSInteger)radioMark radioCount:(NSInteger)radioCount checkboxMark:(NSInteger)checkboxMark checkboxCount:(NSInteger)checkboxCount judgeMark:(NSInteger)judgeMark judgeCount:(NSInteger)judgeCount;
-///设置 考试按照试题 id固定取题，id逗号分隔
-+ (void)cxtq_setUserTestQuestionsIds:(NSString *)questionsIds;
-
++ (void)cxtq_setUserTestRulesPassMark:(NSInteger)passMark time:(NSInteger)time;
 
 /// 获取题库主页 vc
 + (UIViewController *)cxtq_getQuestionHomeVc;
-
 
 //跳转考试页面,仅用于接受CXTQNOTTESTEVENT通知后调用,!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!严重警告!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 + (void)cxtq_pushTestVc;
