@@ -3,7 +3,7 @@
 ## 这是车学堂专用题库
 ### CocoaPods导入：
 ```
-pod 'CXTQuestionFramework', '~> 1.2.0'
+pod 'CXTQuestionFramework', '~> 1.3.2'
 
 pod update --verbose --repo-update
 ```
@@ -99,6 +99,23 @@ UIViewController * questionPage = [CXTQestionSDK getQuestionHomeVc];
 #define CXTQNOTTESTEVENT @"CXTQNOTTESTEVENT"
 //考试结果回调 模拟考试结束的通知。 返回的字典模型key：startTimestamp, endTimestamp, score, isPass（BOOL类型转的NSNumber）, kemu(对应subject_id) 数据类型都是 (NSNumber)
 #define CXTQTEXTRESULTS @"CXTQTEXTRESULTS"
+///车安达点击成绩单返回成绩列表
+///通知包含字典信息：key: cadScoresJsonArr,数据类型是 NSArray，
+///arr内 json 对象如下
+/*
+ NSString * cadUserId;// 第三方 app 使用者的 userId
+ int scores_id;//成绩 id
+ NSString * answerTime;//答题时间
+ NSString * testDate;//考试日期
+ BOOL isPass;//是否及格
+ NSInteger answerNum;//答题数量
+ NSInteger testScore;//考试得分
+ NSString * testType;//考试类型
+ NSInteger subjectIndex;//考试类型
+ NSInteger cad_s_time;//考试开始时间
+ NSInteger cad_e_time;//考试结束时间
+ */
+#define CXTQCADSCORESLIST @"CXTQCADSCORESLIST"
 ```
 刷新方法枚举类型
 ```
@@ -206,6 +223,11 @@ UI相关 API
 
 ## 更新记录：【倒叙】
 
+
+* 2022-11-28<br>
+最新Version：【Version：1.3.2】<br>
+更新内容：<br>
+1.3.2、 新增一些功能<br> 
 * 2022-05-12<br>
 最新Version：【Version：1.2.0】<br>
 更新内容：<br>
