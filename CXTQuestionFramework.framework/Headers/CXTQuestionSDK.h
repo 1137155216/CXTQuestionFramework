@@ -39,7 +39,14 @@
 
 //点击顺序练习按钮 参数@{@"subjectId":@""};
 #define CXTQNOTORDER @"CXTQNOTORDER"
-//点击考试按钮 参数@{@"subjectId":@""};
+/* 点击考试按钮 参数
+{
+justify = 384;
+multi = 323;
+single = 374;
+subjectId = 5;
+};
+ */
 #define CXTQNOTTESTEVENT @"CXTQNOTTESTEVENT"
 //点击首页业务模块通知，方便于统计用户使用情况 参数@{@"itme_type":@""};
 //未做习题101，题型练习102，专项练习103，知识点练习104，错题及收藏105，成绩单106，vip理论速成107、新规押题108、练习 50 题 109、智能答题110、速成500题111、答题技巧112、做题免广告113、付费页面114、付费成功115
@@ -51,6 +58,24 @@
 ///做题计学时，需要扫脸验证发送通知
 ///通知包含字典信息：key: practiceDurationTime,数据类型是 NSNumber，单位是秒；key: practiceStatus,value是个字符串枚举，start,verify,quit;
 #define CXTQRECORDHOURSVALIDATION @"CXTQRECORDHOURSVALIDATION"
+
+///车安达点击成绩单返回成绩列表
+///通知包含字典信息：key: cadScoresJsonArr,数据类型是 NSArray，
+///arr内 json 对象如下
+/*
+ NSString * cadUserId;// 第三方 app 使用者的 userId
+ int scores_id;//成绩 id
+ NSString * answerTime;//答题时间
+ NSString * testDate;//考试日期
+ BOOL isPass;//是否及格
+ NSInteger answerNum;//答题数量
+ NSInteger testScore;//考试得分
+ NSString * testType;//考试类型
+ NSInteger subjectIndex;//考试类型
+ NSInteger cad_s_time;//考试开始时间
+ NSInteger cad_e_time;//考试结束时间
+ */
+#define CXTQCADSCORESLIST @"CXTQCADSCORESLIST"
 
 #define CXTQLOGINXCT @"CXTQLOGINXCT"
 NS_ASSUME_NONNULL_BEGIN
@@ -99,7 +124,9 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
     CXTQTestTypeSafetyOperationTransit          = 31,            // 交通安全专项行动-公交车
 };
 
+@class CXTQChapterModel;
 @interface CXTQuestionSDK : NSObject
+
 
 /*!
  * @abstract 题库初始化方法
@@ -109,13 +136,11 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
 + (void)cxtq_initQuestionWithAppId:(NSString * __nullable)appId;
 
 /*!
- * @abstract 设置按照章节，子章节，课程 id取题顺序练习和考试，没有传0
+ * @abstract 设置按照章节，子章节，课程 id取题顺序练习和考试，默认 0
  *
- * @param chapter_id 章节 id;
- * @param sub_chapter_id 子章节 id;
- * @param course_id 课程章节 id;
+ * @param chapterModels 章节 model;
  */
-+ (void)cxtq_setTakeQuestionChapter_id:(NSInteger)chapter_id sub_chapter_id:(NSInteger)sub_chapter_id course_id:(NSInteger)course_id;
++ (void)cxtq_setTakeQuestionChapterModels:(NSArray<CXTQChapterModel *> *)chapterModels;
 
 /*!
  * @abstract 考试题库设置方法
@@ -125,21 +150,36 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
  * @param provinceID    登录用户省的code，没有时需要传0;
  * @param cityID             登录用户城市的code，没有时需要传0;
  * @param userToken 学员课程登记接口返回参数;
+ * @param userId   学员使用 app 的 userId
  */
-+ (void)cxtq_resetCertificateType:(CXTQCertificateType)certificateType licenceId:(CXTQTestType)licenceId provinceID:(NSInteger)provinceID cityID:(NSInteger)cityID userToken:(NSString * __nullable)userToken;
++ (void)cxtq_resetCertificateType:(CXTQCertificateType)certificateType licenceId:(CXTQTestType)licenceId provinceID:(NSInteger)provinceID cityID:(NSInteger)cityID userToken:(NSString * __nullable)userToken userId:(NSString *)userId;
 
 
 
-/// 设置及格分数
+/// 设置及格分数，收到CXTQNOTTESTEVENT通知后在cxtq_pushTestVc方法前设置
 /// @param passMark 及格分数 0-100
 /// @param time 考试时间
 + (void)cxtq_setUserTestRulesPassMark:(NSInteger)passMark time:(NSInteger)time;
+
+/// 设置及格分数，收到CXTQNOTTESTEVENT通知后在cxtq_pushTestVc方法前设置
+/// @param passMark 及格分数 0-100
+/// @param time 考试时间
+/// @param radioMark 单选题得分
+/// @param radioCount 单选题数量
+/// @param checkboxMark 多选题得分
+/// @param checkboxCount 多选题数量
+/// @param judgeMark 判断题得分
+/// @param judgeCount 判断题数量
++ (void)cxtq_setUserTestRulesPassMark:(NSInteger)passMark time:(NSInteger)time radioMark:(NSInteger)radioMark radioCount:(NSInteger)radioCount checkboxMark:(NSInteger)checkboxMark checkboxCount:(NSInteger)checkboxCount judgeMark:(NSInteger)judgeMark judgeCount:(NSInteger)judgeCount;
+///设置 考试按照试题 id固定取题，id逗号分隔
++ (void)cxtq_setUserTestQuestionsIds:(NSString *)questionsIds;
 
 /// 获取题库主页 vc
 + (UIViewController *)cxtq_getQuestionHomeVc;
 
 //跳转考试页面,仅用于接受CXTQNOTTESTEVENT通知后调用,!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!严重警告!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 + (void)cxtq_pushTestVc;
+
 
 // 获取当前设置的驾照类型科目一题目的总数（单一科目也用这个方法取就可以，比如 资格证考试）
 + (NSInteger)cxtq_fetchKemu1QuestionCount;
@@ -158,6 +198,12 @@ typedef NS_ENUM(NSUInteger, CXTQTestType) {
 
 // 获取当前设置的驾照类型科目四考试结果分数的list
 + (NSArray <NSString *> *)cxtq_fetchKemu4ExamScoreList;
+@end
+
+@interface CXTQChapterModel : NSObject
+@property (nonatomic, assign) NSInteger chapter_id;//章节 id
+@property (nonatomic, assign) NSInteger sub_chapter_id;//子章节 id
+@property (nonatomic, assign) NSInteger course_id;//课程 id
 @end
 
 NS_ASSUME_NONNULL_END
